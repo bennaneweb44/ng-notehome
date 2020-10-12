@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/*########################### Global Css #############################*/
+.bg-warning {
+    background-color: #EFBF76 !important;
+}
+
+#demoHome {
+    list-style: none;
+}

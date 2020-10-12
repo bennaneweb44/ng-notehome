@@ -1,19 +1,7 @@
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Notehome</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Accueil </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod">Modérateur</a>
-      </li>      
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">Utilisateur</a>
-      </li>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">       
 
       <li class="nav-item">
         <a href="/articles" class="nav-link" *ngIf="isLoggedIn" routerLink="articles">Articles</a>
@@ -46,7 +34,14 @@
     </ul>
   </nav>
 
-  <div class="container">
+  <div class="container bg-warning">
+    <div class="col-12 p-4 mt-5 text-center" *ngIf="!isLoggedIn">      
+      <ul id="demoHome">
+        <li class="mb-3">Pour la démonstration :</li>
+        <li>Utilisateur : <b>demo</b></li>
+        <li>Mot de passe : <b>demo</b></li>
+      </ul>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>
