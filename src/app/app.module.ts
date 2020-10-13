@@ -15,6 +15,7 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { RayonListComponent } from './rayons/rayon-list/rayon-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     ProfileComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    RayonListComponent
   ],
   imports: [
     BrowserModule,

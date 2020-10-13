@@ -61,12 +61,13 @@ export class LoginComponent implements OnInit {
             
           });
         }
-
-        //let user = this.tokenStorage.getUser();
+        
       },
       err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        if (err.statusText == 'Unknown Error') {
+          this.errorMessage = 'Une erreur interne s\'est produite. Merci de réessayer plus tard ! ';
+          this.isLoginFailed = true;
+        }        
       }
     );
   }
