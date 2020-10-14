@@ -18,5 +18,9 @@ export class RayonService {
   getRayons(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL + '/rayons', { responseType: 'text' });
   }
+
+  getRayon(id): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + '/rayons/' + id, { responseType: 'text' });
+  }
   
 }

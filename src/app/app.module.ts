@@ -16,6 +16,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { RayonListComponent } from './rayons/rayon-list/rayon-list.component';
+import { RayonEditComponent } from './rayons/rayon-edit/rayon-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RayonListComponent } from './rayons/rayon-list/rayon-list.component';
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    RayonListComponent
+    RayonListComponent,
+    RayonEditComponent
   ],
   imports: [
     BrowserModule,

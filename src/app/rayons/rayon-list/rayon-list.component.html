@@ -1,7 +1,7 @@
 <div class="container">
     <header class="jumbotron" *ngIf="rayons">
         <span class="text-center">
-            <h2 class="mb-4">Rayons 
+            <h2 class="mb-4" style="margin-top: -20px">Rayons 
                 <span class="badge badge-pill badge-warning" style="padding: 5px; border: 2px solid #000">
                     <span *ngIf="rayons?.length < 10">0</span>{{ rayons?.length }}
                 </span>
@@ -17,7 +17,7 @@
                 </span>
                 <span class="float-right ml-1 mr-1">|</span>
                 <span class="float-right">
-                    <a href="#" class="text-primary" title="Modifier">
+                    <a routerLink="/rayon/edit/{{rayon.id}}" class="text-primary" title="Modifier">
                         <i class="fa fa-pencil"></i>
                     </a>
                 </span> 

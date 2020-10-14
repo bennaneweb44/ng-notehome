@@ -11,7 +11,9 @@ export class RayonListComponent implements OnInit {
   rayons: string;
   error: string;
 
-  constructor(private RayonService: RayonService) { }
+  constructor(
+    private RayonService: RayonService
+  ) { }
 
   ngOnInit(): void {
     this.RayonService.getRayons().subscribe(

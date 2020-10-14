@@ -1,0 +1,30 @@
+<div class="container">
+    <header class="jumbotron" *ngIf="rayon" style="background-color: {{ rayon.couleur }}">
+        <span class="text-center">
+            <h2 class="mb-4" style="margin-top: -20px">{{ rayon.titre }}</h2>                       
+        </span>
+    </header>
+    <header class="jumbotron">
+        <span class="text-center">
+            <h5 class="mb-4" style="margin-top: -20px">Articles
+                <span class="badge badge-pill badge-warning" style="padding: 5px; border: 2px solid #000">
+                    <span *ngIf="articles?.length < 10 && articles?.length > 0">0</span>{{ articles?.length }}
+                </span> 
+            </h5>            
+        </span>
+
+        <ul class="list-group col-xs-12 offset-md-2 col-md-8">
+            <li class="list-group-item" *ngFor="let article of articles">
+                {{ article.titre }}                                
+                <span class="float-right">
+                    <a href="#" class="text-danger" title="Retirer">
+                        <i class="fa fa-close"></i>
+                    </a>                    
+                </span>
+            </li>
+        </ul>
+    </header>
+    <header class="jumbotron">
+        <p class="text-danger text-center"><b>Erreur : </b><i>PC maziane</i></p>
+    </header>
+</div>

@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { GlobalConstants } from '../_common/global-constants';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 
@@ -7,13 +8,12 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const BACKEND_API = 'http://localhost:8000/api';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   form: any = {};
@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit {
       data => {
 
         // Token
-        let token = data.token;        
+        let token = data.token;                
 
         // Get user
         if (typeof token == "string" && token.trim() != '') {
 
           // All users
-          this.http.get(BACKEND_API + '/users', {headers: {
+          this.http.get(GlobalConstants.apiURL + '/users', {headers: {
             "Authorization": 'Bearer '+token
           }}).subscribe(usersListResponse => {
             let all_users = usersListResponse['hydra:member'];
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             all_users.forEach(element => {
               if (element.username == this.form.username) {
                 this.tokenStorage.saveUser(element);
-                this.tokenStorage.saveToken(token);
+                this.tokenStorage.saveToken(token);                
                 
                 this.isLoginFailed = false;
                 this.isLoggedIn = true;
