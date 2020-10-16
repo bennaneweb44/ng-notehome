@@ -3,6 +3,29 @@
         <span class="text-center">
             <h2 class="mb-4" style="margin-top: -20px">{{ rayon.titre }}</h2>                       
         </span>
+
+        <div class="offset-md-2 col-md-8">
+            <form [formGroup]="rayonForm" (ngSubmit)="save()">
+                <div class="form-group">                    
+                    <input type="text" class="form-control" formControlName="titre" placeholder="Libellé">
+                </div>
+                <div class="form-group">                    
+                    <input type="text" class="form-control" formControlName="couleur" placeholder="Couleur">
+                </div>
+                <div class="form-group">      
+                    <label>Catégorie : </label>              
+                    <select name="" id="" class="form-control" formControlName="categorie">
+                        <option value="Notes">Notes</option>
+                        <option value="Courses">Courses</option>
+                        <option value="Bricolage">Bricolage</option>            
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-md btn-dark">Enregistrer</button>
+                </div>
+            </form>
+        </div>            
+
     </header>
     <header class="jumbotron">
         <span class="text-center">
