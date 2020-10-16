@@ -33,8 +33,8 @@
       </li>
     </ul>
   </nav>
-
   <div class="container bg-warning">
+    <div class="lds-facebook" *ngIf="showLoading"><div></div><div></div><div></div></div>
     <div class="col-12 p-4 mt-5 text-center" *ngIf="!isLoggedIn">      
       <ul id="demoHome">
         <li class="mb-3">Pour la démonstration :</li>

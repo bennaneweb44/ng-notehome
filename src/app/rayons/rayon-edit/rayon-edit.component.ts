@@ -15,7 +15,7 @@ export class RayonEditComponent implements OnInit {
 
   categories: any[] = [];
   idRayon: number;
-  rayon: [];
+  rayon: any = {};
   articles: any[] = [];
 
   // Form

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
+import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,29 @@ import { TokenStorageService } from './_services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  showLoading = true;
+
   private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(
+    private tokenStorageService: TokenStorageService,
+    private _router: Router
+    ) {
+      this._router.events.subscribe((routerEvent) => {
+        if (routerEvent instanceof NavigationStart) {
+          this.showLoading = true;
+        }
+        if (routerEvent instanceof NavigationEnd || 
+            routerEvent instanceof NavigationCancel || 
+            routerEvent instanceof NavigationError ) {
+          this.showLoading = false;
+        }
+      });
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();

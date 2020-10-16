@@ -8,7 +8,7 @@
             </h2>            
         </span>
         <ul class="list-group col-xs-12 offset-md-2 col-md-8">
-            <li class="list-group-item" *ngFor="let rayon of rayons">
+            <li class="list-group-item" *ngFor="let rayon of rayons" style="background-color: {{ rayon.couleur }}">
                 {{ rayon.titre }}                                
                 <span class="float-right">
                     <a href="#" class="text-danger" title="Supprimer">
