@@ -54,8 +54,6 @@ export class RayonEditComponent implements OnInit {
     this.getRayon();    
   }
 
-  /*################################ Form ###################################*/
-
   initializeForm(): void {
     this.rayonForm = this.fb.group({
       titre: ['', Validators.required],
@@ -64,19 +62,49 @@ export class RayonEditComponent implements OnInit {
     });
   }
 
-  save() {    
-    console.log('Données du forulaire, id = ' + this.idRayon + ' *** ', this.rayonForm.value);
+  save() {
+
+    let id_categorie = this.rayonForm.get('categories').value;
+
+    if (id_categorie > 0) {
+      let  newTitre = this.rayonForm.value.titre;
+      let newCouleur = this.rayonForm.value.couleur;
+      let newCategorie = id_categorie;
+
+      // Get current user
+      let currentUser = this.tokenStorageService.getUser();
+
+      // Current date of update
+      let ts = new Date();
+
+      // Json
+      let newRayon = {
+        "titre"     :  newTitre,
+        "couleur"   : newCouleur,
+        "categorie" : '/api/categories/' + newCategorie,
+        "updatedAt" : ts.toJSON(),
+        "modifId"   : currentUser.id
+      }      
+
+      // Post request
+      this.rayonService.setRayon(this.idRayon, newRayon).subscribe(
+        data => {
+          window.location.reload();
+        },
+        err => {
+          console.error(err);
+        }
+      );
+    }
   }
 
-  /*############################ REST requests ###############################*/
+  getRayon(): void {
 
-  getRayon(): void {    
-
-    // Catégories
+    // Set Global Categories
     this.categorieService.getCategories()
       .subscribe(categorieResponse => {
         GlobalConstants.allCategories = JSON.parse(categorieResponse);        
-    }); 
+    });
 
     // Get Rayon by id
     this.rayonService.getRayon(this.idRayon)
@@ -95,7 +123,7 @@ export class RayonEditComponent implements OnInit {
               couleur: this.rayon.couleur,
               categories: [this.categories]
             });
-            this.rayonForm.controls['categories'].setValue(element.id, {onlySelf: true});
+            this.rayonForm.controls['categories'].setValue(element.id, {onlySelf: true});            
           }          
         });
 
