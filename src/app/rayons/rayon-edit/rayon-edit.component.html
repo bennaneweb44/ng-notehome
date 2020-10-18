@@ -1,5 +1,5 @@
 <div class="container">
-    <header class="jumbotron" *ngIf="rayon" style="background-color: {{ rayon.couleur }}">
+    <header class="jumbotron" *ngIf="rayon">
         <span class="text-center">
             <h2 class="mb-4" style="margin-top: -20px">{{ rayon.titre }}</h2>                       
         </span>
@@ -9,17 +9,18 @@
                 <div class="form-group">                    
                     <input type="text" class="form-control" formControlName="titre" placeholder="Libellé">
                 </div>
-                <div class="form-group">                    
-                    <input type="text" class="form-control" formControlName="couleur" placeholder="Couleur">
-                </div>
+                
                 <div class="form-group">      
                     <label>Catégorie : </label>              
-                    <select name="" id="" class="form-control" formControlName="categorie">
-                        <option value="Notes">Notes</option>
-                        <option value="Courses">Courses</option>
-                        <option value="Bricolage">Bricolage</option>            
+                    <select name="categorie" id="categorie" class="form-control" [(ngModel)]="categorie" formControlName="categories">
+                        <option *ngFor="let categorie of categories" [value]="categorie.id" >{{ categorie.titre }}</option>
                     </select>
                 </div>
+
+                <div class="form-group">                    
+                    <input type="color" class="form-control" formControlName="couleur" placeholder="Couleur"><br><br>
+                </div>
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-md btn-dark">Enregistrer</button>
                 </div>
