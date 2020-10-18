@@ -12,9 +12,10 @@
                 </div>
                 
                 <div class="form-group">      
-                    <label class="ml-1">Catégorie : </label>              
-                    <select name="categorie" id="categorie" class="form-control" [(ngModel)]="categorie" formControlName="categories">
-                        <option *ngFor="let categorie of categories" [value]="categorie.id" >{{ categorie.titre }}</option>
+                    <label class="ml-1">Catégorie : </label>                                  
+                    <select class="form-control" formControlName="categories">
+                        <option [ngValue]="null" disabled>Sélectionner une catégorie ...</option>
+                        <option *ngFor="let categorie of categories" [ngValue]="categorie.id">{{ categorie.titre }}</option>
                     </select>
                 </div>
 

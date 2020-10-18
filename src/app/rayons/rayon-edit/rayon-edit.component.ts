@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GlobalConstants } from 'src/app/_common/global-constants';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
@@ -20,14 +20,7 @@ import { ArticleService } from 'src/app/_services/article/article.service';
 export class RayonEditComponent implements OnInit {
 
   // Todo : Doivent être récupérés à partir du backend
-  categories: Categorie[] = [
-    {id: 1, titre: 'Courses', couleur: 'bg-yellow', icone: 'fa-shopping-cart'},
-    {id: 2, titre: 'Bricolage', couleur: 'bg-green', icone: 'fa-tasks'},
-    {id: 3, titre: 'Administratif', couleur: 'bg-red', icone: 'fa-child'},
-    {id: 4, titre: 'Voiture', couleur: 'bg-aqua', icone: 'fa-car'},
-    {id: 5, titre: 'Boucher', couleur: 'bg-aqua', icone: 'fa-food'},
-    {id: 6, titre: 'A définir', couleur: 'bg-aqua', icone: 'fa-pencil'}
-  ];
+  categories: Categorie[] = [];
   
   idRayon: number;
   rayon: any = {};
@@ -37,18 +30,18 @@ export class RayonEditComponent implements OnInit {
   rayonForm :  FormGroup;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private rayonService: RayonService,
     private categorieService: CategorieService,
     private articleService: ArticleService,
     private fb: FormBuilder,
     private tokenStorageService: TokenStorageService
-  ) {
-    this.initializeForm();
-  }
+  ) { }
 
   ngOnInit(): void {
-
+    this.initializeForm();
+    
     // Rayon en cours
     this.idRayon = +this.route.snapshot.paramMap.get('id');
     this.getRayon();    
@@ -57,7 +50,7 @@ export class RayonEditComponent implements OnInit {
   initializeForm(): void {
     this.rayonForm = this.fb.group({
       titre: ['', Validators.required],
-      couleur: ['', Validators.required],
+      couleur: ['#ffffff', Validators.required],
       categories: ['', Validators.required]
     });
   }
@@ -89,7 +82,7 @@ export class RayonEditComponent implements OnInit {
       // Post request
       this.rayonService.setRayon(this.idRayon, newRayon).subscribe(
         data => {
-          window.location.reload();
+          this.router.navigate(['rayons']); 
         },
         err => {
           console.error(err);
@@ -104,6 +97,11 @@ export class RayonEditComponent implements OnInit {
     this.categorieService.getCategories()
       .subscribe(categorieResponse => {
         GlobalConstants.allCategories = JSON.parse(categorieResponse);        
+
+        // Set local categories for <select></select>
+        GlobalConstants.allCategories['hydra:member'].forEach(element => {
+          this.categories.push({id: element.id, titre: element.titre, couleur: element.couleur, icone: element.icone});
+        });
     });
 
     // Get Rayon by id
