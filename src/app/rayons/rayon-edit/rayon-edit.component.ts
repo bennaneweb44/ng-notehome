@@ -11,12 +11,15 @@ import { Categorie } from 'src/app/_models/categorie.model';
 import { RayonService } from 'src/app/_services/rayon/rayon.service';
 import { CategorieService } from 'src/app/_services/categorie/categorie.service';
 import { ArticleService } from 'src/app/_services/article/article.service';
+import { ArticlesnotesService } from 'src/app/_services/articlesNotes/articlesnotes.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rayon-edit',
   templateUrl: './rayon-edit.component.html',
   styleUrls: ['./rayon-edit.component.css']
 })
+
 export class RayonEditComponent implements OnInit {
 
   // Todo : Doivent être récupérés à partir du backend
@@ -35,13 +38,14 @@ export class RayonEditComponent implements OnInit {
     private rayonService: RayonService,
     private categorieService: CategorieService,
     private articleService: ArticleService,
+    private articleNoteService: ArticlesnotesService,
     private fb: FormBuilder,
     private tokenStorageService: TokenStorageService
   ) { }
 
   ngOnInit(): void {
     this.initializeForm();
-    
+
     // Rayon en cours
     this.idRayon = +this.route.snapshot.paramMap.get('id');
     this.getRayon();    
@@ -133,6 +137,18 @@ export class RayonEditComponent implements OnInit {
         let articles = JSON.parse(articlesResponse);
         this.articles = articles['hydra:member'];
     });    
+  }
+
+  deleteArticle(id) : void
+  {
+    this.articleNoteService.delete(id);
+    
+    for (let i = 0; i < this.articles.length; i++) {
+      if (this.articles[i].id == id) {
+        this.articles.splice(i, 1);
+        break;
+      }
+    } 
   }
 
 }
