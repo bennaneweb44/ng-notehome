@@ -29,8 +29,9 @@ export class RayonEditComponent implements OnInit {
   rayon: any = {};
   articles: any[] = [];
 
-  // Form
+  // Forms
   rayonForm :  FormGroup;
+  articleForm :  FormGroup;
 
   constructor(
     private router: Router,
@@ -44,18 +45,21 @@ export class RayonEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initializeForm();
+    this.initializeForms();
 
     // Rayon en cours
     this.idRayon = +this.route.snapshot.paramMap.get('id');
     this.getRayon();    
   }
 
-  initializeForm(): void {
+  initializeForms(): void {
     this.rayonForm = this.fb.group({
       titre: ['', Validators.required],
       couleur: ['#ffffff', Validators.required],
       categories: ['', Validators.required]
+    });
+    this.articleForm = this.fb.group({
+      titreArticle: ['', Validators.required]
     });
   }
 
@@ -93,6 +97,39 @@ export class RayonEditComponent implements OnInit {
         }
       );
     }
+  }
+
+  saveArticle() {
+    
+    if (this.articleForm.value.titreArticle && this.articleForm.value.titreArticle.trim() != '') {
+
+      // Current date of update
+      let ts = new Date();
+
+      // Json
+      let newArticle = {
+        "titre"     :  this.articleForm.value.titreArticle,
+        "modifId"   : 0,
+        "rayon" : '/api/rayons/' + this.idRayon,
+        "createddAt" : ts.toJSON(),
+        "updatedAt" : ts.toJSON(),
+        "deletedAt" : null
+      }      
+
+      // Post request
+      this.articleService.setArticle(newArticle).subscribe(
+        data => {
+          this.articles.reverse();
+          // Ajout à la fin du tableau d'origine
+          this.articles.push(data);     
+          this.articles.reverse();
+          this.articleForm.reset();     
+        },
+        err => {
+          console.error(err);
+        }
+      );
+    }    
   }
 
   getRayon(): void {
@@ -136,6 +173,7 @@ export class RayonEditComponent implements OnInit {
       .subscribe(articlesResponse => {
         let articles = JSON.parse(articlesResponse);
         this.articles = articles['hydra:member'];
+        this.articles.reverse();
     });    
   }
 

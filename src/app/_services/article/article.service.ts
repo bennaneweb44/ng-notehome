@@ -1,7 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/_common/global-constants';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +24,9 @@ export class ArticleService {
 
   getRayonsWithArticles() : Observable<any> {
     return this.http.get(GlobalConstants.apiURL + '/articles/rayons', { responseType: 'text' });
+  }
+
+  setArticle(articleJSON): Observable<any> {    
+    return this.http.post(GlobalConstants.apiURL + '/articles', articleJSON, httpOptions);
   }
 }

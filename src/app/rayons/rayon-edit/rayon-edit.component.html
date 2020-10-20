@@ -25,6 +25,9 @@
                 </div>
 
                 <div class="form-group text-center">
+                    <a class="btn btn-md btn-default mr-2" style="border: 1px solid #000" href="/rayons">
+                        <i class="fa fa-arrow-left"></i> Retour
+                    </a>
                     <button type="submit" class="btn btn-md btn-success"><i class="fa fa-save"></i> Enregistrer</button>
                 </div>
             </form>
@@ -41,6 +44,18 @@
         </span>
 
         <ul class="list-group col-xs-12 offset-md-2 col-md-8">
+            <li class="list-group-item mb-5 text-center" >
+                <form [formGroup]="articleForm" (ngSubmit)="saveArticle()" class="form-inline">              
+                    <div class="form-group col-10 bg-success" style="padding: 0;" >   
+                        <input type="text" class="form-control w-100" formControlName="titreArticle" style="border-radius: 0;" placeholder="Nom de l'article">
+                    </div>
+    
+                    <div class="form-group text-center col-2" style="padding: 0;">                
+                        <button type="submit" class="btn btn-md btn-success form-control" style="border-radius: 0; width: 90%;"><i class="fa fa-plus"></i></button>
+                    </div>
+                </form>
+            </li>
+
             <li class="list-group-item" *ngFor="let article of articles">
                 {{ article.titre }}                                
                 <span class="float-right">
