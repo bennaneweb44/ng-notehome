@@ -10,7 +10,15 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  getArticles(rayon_id): Observable<any> {
-    return this.http.get(GlobalConstants.apiURL + '/articles/rayon/' + rayon_id, { responseType: 'text' });
+  getArticles(rayon_id = null): Observable<any> {
+    if (rayon_id) {
+      return this.http.get(GlobalConstants.apiURL + '/articles/rayon/' + rayon_id, { responseType: 'text' });
+    } else {
+      return this.http.get(GlobalConstants.apiURL + '/articles', { responseType: 'text' });
+    }    
+  }
+
+  getRayonsWithArticles() : Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + '/articles/rayons', { responseType: 'text' });
   }
 }
