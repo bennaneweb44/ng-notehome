@@ -6,13 +6,13 @@
                     <span *ngIf="notes?.length < 10">0</span>{{ notes?.length }}
                 </span>
                 <br>
-                <span class="badge badge-success" style="font-size: 16px; text-align: center;">
-                    <i class="fa fa-plus"></i>
+                <span class="badge badge-success" style="font-size: 16px; text-align: center; margin-top: 2em;">
+                    <i class="fa fa-plus"></i> Ajouter
                 </span>
             </h2>                  
         </span>
         <ul class="list-group col-xs-12 offset-md-2 col-md-8 mb-5">
-            <li class="list-group-item" *ngFor="let note of notes | paginate: { itemsPerPage: 5, currentPage: p }">
+            <li class="list-group-item" *ngFor="let note of notes | paginate: { itemsPerPage: 10, currentPage: p }" style="border: 1px solid #ccc">
                 {{ note.titre }} 
                 <span class="pull-right">
                     <span class="badge" style="border: 1px solid #000; background-color: {{ note.color }}">{{ note.category }}</span>

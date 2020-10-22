@@ -12,17 +12,19 @@ import { RayonListComponent } from './rayons/rayon-list/rayon-list.component';
 import { RayonEditComponent } from './rayons/rayon-edit/rayon-edit.component';
 import { NotesListComponent } from './notes/notes-list/notes-list.component';
 
+import { AuthGuardService } from './_services/auth-guard.service';
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
-  { path: 'mod', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent },
-  { path: 'rayons', component: RayonListComponent },
-  { path: 'notes', component: NotesListComponent },
-  { path: 'rayon/edit/:id', component: RayonEditComponent },
+  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService] },
+  { path: 'user', component: BoardUserComponent, canActivate:[AuthGuardService] },
+  { path: 'mod', component: BoardModeratorComponent, canActivate:[AuthGuardService] },
+  { path: 'admin', component: BoardAdminComponent, canActivate:[AuthGuardService] },
+  { path: 'rayons', component: RayonListComponent, canActivate:[AuthGuardService] },
+  { path: 'notes', component: NotesListComponent, canActivate:[AuthGuardService] },
+  { path: 'rayon/edit/:id', component: RayonEditComponent, canActivate:[AuthGuardService] },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

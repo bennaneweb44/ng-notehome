@@ -8,7 +8,7 @@
             </h2>            
         </span>
         <ul class="list-group col-xs-12 offset-md-2 col-md-8">
-            <li class="list-group-item" *ngFor="let rayon of rayons" style="background-color: {{ rayon.couleur }}; border: 1px solid #000">
+            <li class="list-group-item" *ngFor="let rayon of rayons" style="background-color: {{ rayon.couleur }}; border: 1px solid #282525">
                 <a routerLink="/rayon/edit/{{rayon.id}}" class="text-primary" title="Modifier">
                     <span style="color: #000; font-weight: initial; ">
                         {{ rayon.titre }}
