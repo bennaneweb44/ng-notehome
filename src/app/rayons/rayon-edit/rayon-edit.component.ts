@@ -24,6 +24,9 @@ export class RayonEditComponent implements OnInit {
 
   // Todo : Doivent être récupérés à partir du backend
   categories: Categorie[] = [];
+
+  // Pagination
+  p: number = 1;
   
   idRayon: number;
   rayon: any = {};

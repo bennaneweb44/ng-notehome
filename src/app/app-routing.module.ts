@@ -10,6 +10,7 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { RayonListComponent } from './rayons/rayon-list/rayon-list.component';
 import { RayonEditComponent } from './rayons/rayon-edit/rayon-edit.component';
+import { NotesListComponent } from './notes/notes-list/notes-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'rayons', component: RayonListComponent },
+  { path: 'notes', component: NotesListComponent },
   { path: 'rayon/edit/:id', component: RayonEditComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

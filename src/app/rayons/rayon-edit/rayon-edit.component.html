@@ -34,7 +34,7 @@
         </div>            
 
     </header>
-    <header class="jumbotron">
+    <header class="jumbotron" style="position: relative">
         <span class="text-center">
             <h5 class="mb-4" style="margin-top: -20px">Articles
                 <span class="badge badge-pill badge-warning" style="padding: 5px; border: 2px solid #000">
@@ -43,7 +43,7 @@
             </h5>            
         </span>
 
-        <ul class="list-group col-xs-12 offset-md-2 col-md-8" style="padding: 0">
+        <ul class="list-group col-xs-12 offset-md-2 col-md-8 mb-5" style="padding: 0">
             <li class="list-group-item mb-5 text-center">
                 <form [formGroup]="articleForm" (ngSubmit)="saveArticle()" class="form-inline">              
                     <div class="form-group col-10 bg-success" style="padding: 0;" >   
@@ -56,7 +56,7 @@
                 </form>
             </li>
 
-            <li class="list-group-item" *ngFor="let article of articles">
+            <li class="list-group-item" *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: p }">
                 {{ article.titre }}                                
                 <span class="float-right">
                     <a class="text-danger" style="cursor: pointer" title="Retirer" (click)="deleteArticle(article.id);">
@@ -65,6 +65,11 @@
                 </span>
             </li>
         </ul>
+
+        <div class="text-center" style="position: absolute; bottom: 0; right: 0">
+            <pagination-controls  (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
+        </div> 
+
     </header>
     <header class="jumbotron">
         <p class="text-danger text-center"><b>Erreur : </b><i>PC maziane</i></p>

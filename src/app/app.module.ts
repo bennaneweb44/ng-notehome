@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +18,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { RayonListComponent } from './rayons/rayon-list/rayon-list.component';
 import { RayonEditComponent } from './rayons/rayon-edit/rayon-edit.component';
+import { NotesListComponent } from './notes/notes-list/notes-list.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { RayonEditComponent } from './rayons/rayon-edit/rayon-edit.component';
     BoardModeratorComponent,
     BoardUserComponent,
     RayonListComponent,
-    RayonEditComponent
+    RayonEditComponent,
+    NotesListComponent
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

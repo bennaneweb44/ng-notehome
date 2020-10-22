@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <div class="topnav" id="myTopnav" >
-    <a href="/" class="active"><i class="fa fa-home"></i> Notehome</a>
+    <a href="/" class="active" style="font-size: 1.2em;"><i class="fa fa-home"></i> <b>Notehome</b></a>
 
     <a href="/rayons" *ngIf="isLoggedIn"><i class="fa fa-list"></i> Rayons</a>
     <a href="/notes" *ngIf="isLoggedIn"><i class="fa fa-pencil"></i> Notes</a>
@@ -12,7 +12,7 @@
     <a href="/profile" style="float: right;" *ngIf="isLoggedIn" routerLink="profile"><i class="fa fa-user"></i> {{ username }}</a>       
     
     <a href="/login" class="nav-link" style="float: right;" *ngIf="!isLoggedIn"><i class="fa fa-sign-in"></i> Connexion</a>
-    <a href="/register" class="nav-link" style="float: right;" *ngIf="!isLoggedIn"><i class="fa fa-pencil-square-o"></i> S'inscrire</a>
+    <!--<a href="/register" class="nav-link" style="float: right;" *ngIf="!isLoggedIn"><i class="fa fa-pencil-square-o"></i> S'inscrire</a>-->
 
     <a href="javascript:void(0);" class="icon" (click)="toggleMenuNavbar()">
       <i class="fa fa-bars"></i>
