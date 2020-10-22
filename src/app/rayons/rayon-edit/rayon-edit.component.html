@@ -1,5 +1,5 @@
 <div class="container">
-    <header class="jumbotron" *ngIf="rayon">
+    <header class="jumbotron" style="margin-top: 2em" *ngIf="rayon">
         <span class="text-center">
             <h2 class="mb-4" style="margin-top: -20px">{{ rayon.titre }}</h2>                       
         </span>
@@ -43,8 +43,8 @@
             </h5>            
         </span>
 
-        <ul class="list-group col-xs-12 offset-md-2 col-md-8">
-            <li class="list-group-item mb-5 text-center" >
+        <ul class="list-group col-xs-12 offset-md-2 col-md-8" style="padding: 0">
+            <li class="list-group-item mb-5 text-center">
                 <form [formGroup]="articleForm" (ngSubmit)="saveArticle()" class="form-inline">              
                     <div class="form-group col-10 bg-success" style="padding: 0;" >   
                         <input type="text" class="form-control w-100" formControlName="titreArticle" style="border-radius: 0;" placeholder="Nom de l'article">

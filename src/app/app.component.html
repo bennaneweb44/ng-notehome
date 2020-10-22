@@ -1,42 +1,28 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand"><i class="fa fa-home"></i> Notehome</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">       
 
-      <li class="nav-item">
-        <a href="/articles" class="nav-link" *ngIf="isLoggedIn" routerLink="articles">Articles</a>
-      </li>
-      <li class="nav-item">
-        <a href="/rayons" class="nav-link" *ngIf="isLoggedIn" routerLink="rayons">Rayons</a>
-      </li>
-      <li class="nav-item">
-        <a href="/notes" class="nav-link" *ngIf="isLoggedIn" routerLink="notes">Notes</a>
-      </li>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    </ul>
+  <div class="topnav" id="myTopnav" >
+    <a href="/" class="active"><i class="fa fa-home"></i> Notehome</a>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register"><i class="fa fa-pencil-square-o"></i> S'inscrire</a>
-      </li>
-      <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login"><i class="fa fa-sign-in"></i> Connexion</a>
-      </li>
-    </ul>
+    <a href="/rayons" *ngIf="isLoggedIn"><i class="fa fa-list"></i> Rayons</a>
+    <a href="/notes" *ngIf="isLoggedIn"><i class="fa fa-pencil"></i> Notes</a>
 
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile"><i class="fa fa-user"></i> {{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i> <span class="hidden-xs">Déconnexion</span></a>
-      </li>
-    </ul>
-  </nav>
+    <a href class="nav-link" style="float: right;" *ngIf="isLoggedIn" (click)="logout()"><i class="fa fa-sign-out"></i> <span class="hidden-xs">Déconnexion</span></a> 
+    <a href="/profile" style="float: right;" *ngIf="isLoggedIn" routerLink="profile"><i class="fa fa-user"></i> {{ username }}</a>       
+    
+    <a href="/login" class="nav-link" style="float: right;" *ngIf="!isLoggedIn"><i class="fa fa-sign-in"></i> Connexion</a>
+    <a href="/register" class="nav-link" style="float: right;" *ngIf="!isLoggedIn"><i class="fa fa-pencil-square-o"></i> S'inscrire</a>
+
+    <a href="javascript:void(0);" class="icon" (click)="toggleMenuNavbar()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
   <div class="container bg-warning">
     <div class="lds-facebook" *ngIf="showLoading"><div></div><div></div><div></div></div>
     <div class="col-12 p-4 mt-5 text-center" *ngIf="!isLoggedIn">      
-      <ul id="demoHome">
+      <ul id="demoHome" style="margin-left: -2em;">
         <li class="mb-3">Pour la démonstration :</li>
         <li>Utilisateur : <b>demo</b></li>
         <li>Mot de passe : <b>demo</b></li>
