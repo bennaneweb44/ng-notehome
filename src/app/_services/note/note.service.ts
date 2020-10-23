@@ -12,6 +12,8 @@ const httpOptions = {
 })
 export class NoteService {
 
+  message = null;
+
   constructor(private http: HttpClient) { }
 
   getNotes(): Observable<any> {
@@ -24,5 +26,11 @@ export class NoteService {
 
   setNote(id, noteJSON): Observable<any> {    
     return this.http.put(GlobalConstants.apiURL + '/notes/' + id, noteJSON, httpOptions);
+  }
+
+  delete(id)
+  {
+    return this.http.delete(GlobalConstants.apiURL + '/notes/' + id, httpOptions)
+                      .subscribe(() => this.message = 'Note supprimée');
   }
 }

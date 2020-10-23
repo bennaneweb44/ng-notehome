@@ -19,6 +19,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { RayonListComponent } from './rayons/rayon-list/rayon-list.component';
 import { RayonEditComponent } from './rayons/rayon-edit/rayon-edit.component';
 import { NotesListComponent } from './notes/notes-list/notes-list.component';
+import { NotesEditComponent } from './notes/notes-edit/notes-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NotesListComponent } from './notes/notes-list/notes-list.component';
     BoardUserComponent,
     RayonListComponent,
     RayonEditComponent,
-    NotesListComponent
+    NotesListComponent,
+    NotesEditComponent
   ],
   imports: [
     BrowserModule,

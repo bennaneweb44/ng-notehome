@@ -182,7 +182,11 @@ export class RayonEditComponent implements OnInit {
 
   deleteArticle(id) : void
   {
-    this.articleNoteService.delete(id);
+    try {
+      this.articleNoteService.delete(id);  
+    } catch (error) {
+      
+    }    
     
     for (let i = 0; i < this.articles.length; i++) {
       if (this.articles[i].id == id) {

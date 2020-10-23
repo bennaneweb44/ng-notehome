@@ -15,7 +15,9 @@
             <li class="list-group-item" *ngFor="let note of notes | paginate: { itemsPerPage: 10, currentPage: p }" style="border: 1px solid #ccc; padding: 0.5em">
                 {{ note.titre }} <span class="badge ml-2" style="border: 1px solid #000; background-color: {{ note.color }}">{{ note.category }}</span>
                 <span class="pull-right">                    
-                    <span><i class="fa fa-pencil" style="color: darkgray"></i></span>
+                    <a routerLink="/note/edit/{{note.id}}" class="text-primary" title="Modifier">
+                        <i class="fa fa-pencil" style="color: darkgray"></i>
+                    </a>
                 </span>                
             </li>
         </ul>

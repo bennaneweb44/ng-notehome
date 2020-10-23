@@ -1,0 +1,42 @@
+<div class="container">
+    <header class="jumbotron" style="margin-top: 2em" *ngIf="note">
+        <span class="text-center">
+            <h2 class="mb-4" style="margin-top: -20px">{{ note.titre }}</h2>                       
+        </span>
+
+        <div class="offset-md-2 col-md-8">
+            <form [formGroup]="noteForm" (ngSubmit)="save()">
+                <label class="ml-1">Titre : </label>   
+                <div class="form-group">                    
+                    <input type="text" class="form-control" formControlName="titre" placeholder="Titre">
+                </div>
+                
+                <div class="form-group">      
+                    <label class="ml-1">Catégorie : </label>                                  
+                    <select class="form-control" formControlName="categories">
+                        <option [ngValue]="null" disabled>Sélectionner une catégorie ...</option>
+                        <option *ngFor="let categorie of categories" [ngValue]="categorie.id">{{ categorie.titre }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">                    
+                    <label class="ml-1">Description : </label>
+                    <textarea class="form-control" style="margin: 0;" rows="4" formControlName="description" placeholder="Optionnel"></textarea>
+                    <br><br>
+                </div>
+
+                <div class="form-group text-center">
+                    <a class="btn btn-md btn-default mr-2" style="border: 1px solid #000" href="/notes">
+                        <i class="fa fa-arrow-left"></i> Retour
+                    </a>
+                    <button type="submit" class="btn btn-md btn-success"><i class="fa fa-save"></i> Enregistrer</button>
+                </div>
+            </form>
+        </div>            
+
+    </header>
+    
+    <header class="jumbotron">
+        <p class="text-danger text-center"><b>Erreur : </b><i>PC maziane</i></p>
+    </header>
+</div>
