@@ -1,5 +1,5 @@
 <div class="container">
-    <header class="jumbotron" *ngIf="rayons" style="margin-top: 2em; padding-left: 8%">
+    <header class="jumbotron" *ngIf="rayons" style="position: relative; margin-top: 2em; padding-left: 8%">
         <span class="text-center">
             <h2 class="mb-4" style="margin-top: -20px">Rayons 
                 <span class="badge badge-pill badge-warning" style="padding: 5px; border: 2px solid #000">
@@ -7,8 +7,14 @@
                 </span>
             </h2>            
         </span>
-        <ul class="list-group col-xs-12 offset-md-2 col-md-8">
-            <li class="list-group-item" *ngFor="let rayon of rayons" style="background-color: {{ rayon.couleur }}; border: 1px solid #282525">
+        
+        <select style="border: 1px solid #000" class="form-control col-xs-12 offset-md-2 col-md-8 mb-4 bg-transparent" #mySelect (change)="updateInsteadCategory(mySelect.value)">
+            <option *ngFor="let categorie of categories" [ngValue]="categorie.id">{{ categorie.titre }}</option>
+        </select>
+        
+        <ul class="list-group col-xs-12 offset-md-2 col-md-8 mb-5 bg-success" style="padding: 0;">
+            <li class="list-group-item" *ngFor="let rayon of rayons | paginate: { itemsPerPage: 12, currentPage: p }" 
+                style="padding: 0.5em; background-color: {{ rayon.couleur }}; border: 1px solid #282525">
                 <a routerLink="/rayon/edit/{{rayon.id}}" class="text-primary" title="Modifier">
                     <span style="color: #000; font-weight: initial; ">
                         {{ rayon.titre }}
@@ -31,6 +37,10 @@
                 </span> 
             </li>
         </ul>
+
+        <div class="text-center" style="position: absolute; bottom: 0; right: 0">
+            <pagination-controls  (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant"></pagination-controls>
+        </div>
     </header>
     <header class="jumbotron" *ngIf="error">
         <p class="text-danger text-center"><b>Erreur : </b><i>{{ error }}</i></p>
